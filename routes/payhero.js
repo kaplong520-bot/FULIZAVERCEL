@@ -26,7 +26,9 @@ router.post("/stk-push", async(req, res) => {
             amount,
             phone_number,
             channel_id: PAYHERO_CHANNEL_ID,
-            provider: "m-pesa"
+            provider: "m-pesa",
+            external_reference: `TXN-${Date.now()}`,
+            callback_url: "https://yourdomain.com/api/payhero-callback"
         };
 
         const response = await axios.post(
@@ -58,6 +60,12 @@ router.post("/stk-push", async(req, res) => {
             message: errorMessage || "Payment initiation failed"
         });
     }
+});
+
+router.post("/payhero-callback", async (req, res) => {
+    console.log("PayHero Callback:", req.body);
+    // Log the transaction result to your database
+    res.sendStatus(200);
 });
 
 module.exports = router;

